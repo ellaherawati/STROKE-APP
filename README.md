@@ -1,346 +1,373 @@
-# 🏥 Stroke Prediction System
+# 🚀 Panduan Lengkap Menjalankan Sistem Prediksi Stroke
 
-Sistem prediksi risiko stroke berbasis Machine Learning menggunakan Flask API dan Web Interface yang modern dan interaktif.
+Panduan step-by-step untuk menjalankan aplikasi prediksi risiko stroke berbasis Machine Learning.
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Python](https://img.shields.io/badge/python-3.7+-blue.svg)
-![Flask](https://img.shields.io/badge/flask-2.0+-green.svg)
+---
 
 ## 📋 Daftar Isi
 
-- [Tentang Aplikasi](#tentang-aplikasi)
-- [Fitur Utama](#fitur-utama)
-- [Teknologi yang Digunakan](#teknologi-yang-digunakan)
-- [Persyaratan Sistem](#persyaratan-sistem)
-- [Instalasi](#instalasi)
-- [Cara Menjalankan](#cara-menjalankan)
-- [Cara Penggunaan](#cara-penggunaan)
-- [Struktur Project](#struktur-project)
-- [API Documentation](#api-documentation)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
-- [License](#license)
+1. [Persiapan Awal](#1-persiapan-awal)
+2. [Instalasi Software](#2-instalasi-software)
+3. [Setup Project](#3-setup-project)
+4. [Menjalankan Sistem](#4-menjalankan-sistem)
+5. [Testing & Verifikasi](#5-testing--verifikasi)
+6. [Troubleshooting](#6-troubleshooting)
+7. [Tips & Best Practices](#7-tips--best-practices)
 
 ---
 
-## 🎯 Tentang Aplikasi
+## 1. Persiapan Awal
 
-Aplikasi ini adalah sistem deteksi dini risiko stroke yang menggunakan teknologi Machine Learning. Sistem ini dapat memprediksi risiko stroke berdasarkan data medis dan demografis pasien dengan tingkat akurasi tinggi.
+### ✅ Checklist Sebelum Mulai
 
-**⚠️ DISCLAIMER**: Hasil prediksi ini **BUKAN diagnosis medis**. Selalu konsultasikan dengan dokter atau tenaga medis profesional untuk pemeriksaan lebih lanjut.
+Pastikan Anda memiliki:
 
----
-
-## ✨ Fitur Utama
-
-- ✅ **Prediksi Real-time** - Hasil prediksi langsung dengan machine learning
-- ✅ **Auto-calculate BMI** - BMI dihitung otomatis dari tinggi dan berat badan
-- ✅ **Visualisasi Hasil** - Grafik dan progress bar yang informatif
-- ✅ **Export PDF** - Unduh laporan dalam format PDF
-- ✅ **Print Report** - Cetak laporan untuk dokumentasi
-- ✅ **Share Result** - Bagikan hasil ke aplikasi lain
-- ✅ **Responsive Design** - Dapat diakses dari berbagai perangkat
-- ✅ **Modern UI/UX** - Interface yang user-friendly dengan animasi smooth
+- [ ] Komputer dengan OS: Windows/macOS/Linux
+- [ ] Koneksi internet (untuk download dependencies)
+- [ ] File project lengkap:
+  - [ ] `app.py`
+  - [ ] `index.php`
+  - [ ] `stroke_model.pkl`
+  - [ ] `stroke_scaler.pkl`
+- [ ] Minimal 4GB RAM tersedia
+- [ ] 500MB ruang disk kosong
 
 ---
 
-## 🛠 Teknologi yang Digunakan
+## 2. Instalasi Software
 
-### Backend
-- **Python 3.7+** - Programming language
-- **Flask** - Web framework untuk API
-- **Flask-CORS** - Cross-Origin Resource Sharing
-- **Scikit-learn** - Machine learning library
-- **Joblib** - Model serialization
-- **NumPy** - Numerical computing
+### A. Install Python 3.7+
 
-### Frontend
-- **HTML5** - Structure
-- **Tailwind CSS** - Styling framework
-- **JavaScript (Vanilla)** - Interactivity
-- **html2pdf.js** - PDF generation
+#### **Windows:**
 
-### Server
-- **XAMPP** - Local development environment (Apache)
+1. Download Python dari [python.org/downloads](https://www.python.org/downloads/)
+2. Jalankan installer
+3. ✅ **PENTING**: Centang **"Add Python to PATH"**
+4. Klik "Install Now"
+5. Tunggu sampai selesai
 
----
+**Verifikasi:**
+```cmd
+python --version
+```
+Output: `Python 3.x.x`
 
-## 💻 Persyaratan Sistem
-
-### Minimum Requirements:
-- **OS**: Windows 7/8/10/11, macOS 10.12+, atau Linux
-- **Python**: 3.7 atau lebih tinggi
-- **RAM**: 4GB (8GB recommended)
-- **Storage**: 500MB free space
-- **Browser**: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
-
-### Software yang Harus Diinstall:
-1. Python 3.7+ ([Download](https://www.python.org/downloads/))
-2. XAMPP ([Download](https://www.apachefriends.org/download.html))
-3. Text Editor/IDE (VSCode, Sublime, dll - optional)
-
----
-
-## 📦 Instalasi
-
-### Step 1: Clone atau Download Repository
+#### **macOS:**
 
 ```bash
-# Clone repository (jika menggunakan Git)
-git clone https://github.com/username/stroke-prediction.git
-cd stroke-prediction
+# Menggunakan Homebrew (recommended)
+brew install python@3.11
 
-# Atau download ZIP dan extract
+# Atau download dari python.org
 ```
 
-### Step 2: Struktur Folder
-
-Pastikan file-file Anda terorganisir seperti ini:
-
+**Verifikasi:**
+```bash
+python3 --version
 ```
-stroke-app/
-│
-├── app.py                  # Flask API server
-├── index.php              # Frontend web interface
-├── stroke_model.pkl       # Trained ML model
-├── stroke_scaler.pkl      # Feature scaler
-├── README.md              # Dokumentasi ini
-└── requirements.txt       # Python dependencies (optional)
-```
+Output: `Python 3.x.x`
 
-### Step 3: Install Python Dependencies
-
-Buka terminal/command prompt di folder project, lalu jalankan:
+#### **Linux (Ubuntu/Debian):**
 
 ```bash
-# Install semua dependencies
+sudo apt update
+sudo apt install python3 python3-pip python3-venv
+```
+
+---
+
+### B. Install XAMPP
+
+1. Download XAMPP dari [apachefriends.org](https://www.apachefriends.org/download.html)
+2. Pilih versi sesuai OS Anda
+3. Jalankan installer
+4. Install dengan pengaturan default
+5. Selesai
+
+**Lokasi Default:**
+- **Windows**: `C:\xampp\`
+- **macOS**: `/Applications/XAMPP/`
+- **Linux**: `/opt/lampp/`
+
+---
+
+## 3. Setup Project
+
+### Step 1: Letakkan File di Folder XAMPP
+
+**Windows:**
+```
+C:\xampp\htdocs\STROKE-APP\
+```
+
+**macOS:**
+```
+/Applications/XAMPP/xamppfiles/htdocs/STROKE-APP/
+```
+
+**Linux:**
+```
+/opt/lampp/htdocs/STROKE-APP/
+```
+
+### Step 2: Struktur Folder yang Benar
+
+```
+STROKE-APP/
+├── app.py
+├── index.php
+├── stroke_model.pkl
+├── stroke_scaler.pkl
+└── README.md (optional)
+```
+
+**Verifikasi di Terminal/CMD:**
+
+```bash
+# Windows
+cd C:\xampp\htdocs\STROKE-APP
+dir
+
+# macOS/Linux
+cd /Applications/XAMPP/xamppfiles/htdocs/STROKE-APP
+ls -la
+```
+
+Pastikan semua file ada!
+
+---
+
+### Step 3: Setup Virtual Environment (Recommended)
+
+#### **Kenapa Perlu Virtual Environment?**
+- ✅ Isolasi dependencies per project
+- ✅ Tidak merusak Python sistem
+- ✅ Mudah di-manage
+- ✅ Best practice untuk development
+
+#### **Cara Setup:**
+
+**Windows:**
+```cmd
+# Masuk ke folder project
+cd C:\xampp\htdocs\STROKE-APP
+
+# Buat virtual environment
+python -m venv venv
+
+# Aktifkan virtual environment
+venv\Scripts\activate
+
+# Prompt akan berubah jadi: (venv) C:\xampp\htdocs\STROKE-APP>
+```
+
+**macOS/Linux:**
+```bash
+# Masuk ke folder project
+cd /Applications/XAMPP/xamppfiles/htdocs/STROKE-APP
+
+# Buat virtual environment
+python3 -m venv venv
+
+# Aktifkan virtual environment
+source venv/bin/activate
+
+# Prompt akan berubah jadi: (venv) user@computer STROKE-APP %
+```
+
+---
+
+### Step 4: Install Python Dependencies
+
+Dengan virtual environment **AKTIF**, jalankan:
+
+```bash
+# Install semua package yang diperlukan
 pip install flask flask-cors joblib numpy scikit-learn
 
-# Atau jika menggunakan Python 3
-pip3 install flask flask-cors joblib numpy scikit-learn
-```
-
-**Atau menggunakan requirements.txt** (jika ada):
-
-```bash
+# Atau jika ada requirements.txt
 pip install -r requirements.txt
 ```
 
-### Step 4: Verifikasi Instalasi
+**Output yang diharapkan:**
+```
+Collecting flask
+  Downloading Flask-3.x.x-py3-none-any.whl
+Collecting flask-cors
+  Downloading Flask_Cors-4.x.x-py2.py3-none-any.whl
+...
+Successfully installed flask-3.x.x flask-cors-4.x.x joblib-1.x.x numpy-1.x.x scikit-learn-1.x.x
+```
+
+**Verifikasi:**
+```bash
+pip list
+```
+
+Pastikan muncul:
+- flask
+- flask-cors
+- joblib
+- numpy
+- scikit-learn
+
+---
+
+### Step 5: Fix Scikit-Learn Version (Jika Ada Warning)
+
+Jika muncul warning versi saat running, downgrade scikit-learn:
 
 ```bash
-# Cek versi Python
-python --version
-
-# Cek library terinstall
-pip list | grep flask
-pip list | grep scikit-learn
+pip install scikit-learn==1.6.1
 ```
 
 ---
 
-## 🚀 Cara Menjalankan
+## 4. Menjalankan Sistem
 
-### Metode 1: Manual Start
+### 🎯 Workflow Lengkap
 
-#### 1. Jalankan Flask API (Terminal/CMD)
+```
+Terminal/CMD (Backend API) ← Biarkan tetap buka
+        ↓
+XAMPP Apache (Frontend) ← Start di Control Panel
+        ↓
+Browser (Access Website) ← http://localhost/STROKE-APP/index.php
+```
 
-```bash
-# Navigasi ke folder project
-cd /Applications/XAMPP/xamppfiles/htdocs/stroke-app
+---
 
-# Windows
+### Step 1: Jalankan Backend API
+
+#### **Terminal/CMD 1: Start Flask API**
+
+**Windows:**
+```cmd
+# Masuk ke folder project
+cd C:\xampp\htdocs\STROKE-APP
+
+# Aktifkan virtual environment
+venv\Scripts\activate
+
+# Jalankan API
 python app.py
+```
 
-# macOS/Linux
+**macOS/Linux:**
+```bash
+# Masuk ke folder project
+cd /Applications/XAMPP/xamppfiles/htdocs/STROKE-APP
+
+# Aktifkan virtual environment
+source venv/bin/activate
+
+# Jalankan API
 python3 app.py
 ```
 
-**Output yang diharapkan:**
+#### **✅ Output yang Benar:**
 
 ```
+Loading model...
+✅ Model loaded successfully!
+
 ======================================================================
 🏥  STROKE PREDICTION API
 ======================================================================
 📦 Model loaded: True
 📦 Scaler loaded: True
 
-🌐 API URL: http://localhost:5002
-📍 Location: /Applications/XAMPP/xamppfiles/htdocs/stroke-app
+🌐 API URL: http://localhost:5000
+📍 Location: /Applications/XAMPP/xamppfiles/htdocs/STROKE-APP
 
 ⚠️  Press CTRL+C to quit
 ======================================================================
 
- * Running on http://0.0.0.0:5002
+ * Serving Flask app 'app'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5002
+ * Running on http://192.168.x.x:5002
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: xxx-xxx-xxx
 ```
 
-✅ **PENTING**: Biarkan terminal ini tetap terbuka!
-
-#### 2. Jalankan XAMPP
-
-1. Buka **XAMPP Control Panel**
-2. Klik tombol **Start** pada **Apache**
-3. Tunggu hingga Apache berwarna hijau
-
-#### 3. Akses Aplikasi di Browser
-
-```
-http://localhost/stroke-app/index.php
-```
+**🚨 JANGAN TUTUP TERMINAL INI!** Biarkan tetap running.
 
 ---
 
-### Metode 2: Quick Start Script (Optional)
+### Step 2: Start XAMPP Apache
 
-**Windows (start.bat):**
-```batch
-@echo off
-start cmd /k python app.py
-timeout /t 3
-start http://localhost/stroke-app/index.php
-```
+#### **Cara 1: XAMPP Control Panel GUI**
 
-**macOS/Linux (start.sh):**
+1. Buka aplikasi **XAMPP Control Panel**
+2. Cari baris **Apache**
+3. Klik tombol **Start**
+4. Tunggu hingga status berubah jadi **hijau/running**
+5. Jika muncul popup firewall, klik **Allow**
+
+#### **Cara 2: Command Line (macOS/Linux)**
+
 ```bash
-#!/bin/bash
-python3 app.py &
-sleep 3
-open http://localhost/stroke-app/index.php
+# Start Apache
+sudo /Applications/XAMPP/xamppfiles/xampp startapache
+
+# Stop Apache (jika perlu)
+sudo /Applications/XAMPP/xamppfiles/xampp stopapache
 ```
 
-Jalankan dengan double-click atau `./start.sh`
+#### **✅ Tanda Apache Berhasil:**
+
+- Status Apache di XAMPP Control Panel: **Hijau**
+- Port: **80** atau **443** (HTTPS)
+- Atau buka browser: `http://localhost` → Muncul XAMPP Dashboard
 
 ---
 
-## 📖 Cara Penggunaan
+### Step 3: Akses Website di Browser
 
-### 1. Mengakses Aplikasi
+Buka browser favorit Anda (Chrome/Firefox/Safari/Edge), lalu ketik:
 
-Buka browser dan akses:
 ```
-http://localhost/stroke-app/index.php
+http://localhost/STROKE-APP/index.php
 ```
 
-### 2. Mengisi Form
+Atau alternatif:
 
-#### **Bagian 1: Informasi Pribadi**
-- **Nama Lengkap**: Nama pasien (optional, untuk laporan)
-- **Jenis Kelamin**: Pilih Perempuan/Laki-laki/Lainnya
-- **Usia**: Masukkan usia dalam tahun (contoh: 45)
-- **Tinggi Badan**: Dalam cm (contoh: 170)
-- **Berat Badan**: Dalam kg (contoh: 70)
-- **BMI**: Otomatis terhitung
+```
+http://127.0.0.1/STROKE-APP/index.php
+```
 
-#### **Bagian 2: Kondisi Kesehatan**
-- **Tekanan Darah Tinggi**: Ya/Tidak
-- **Penyakit Jantung**: Ya/Tidak
-- **Kadar Gula Darah**: Dalam mg/dL (normal: 70-140)
-- **Status Merokok**: 
-  - Tidak Pernah Merokok
-  - Pernah Merokok (Sudah Berhenti)
-  - Aktif Merokok
-  - Tidak Tahu
+**Jika XAMPP menggunakan port 8080:**
 
-#### **Bagian 3: Informasi Lainnya**
-- **Status Pernikahan**: Belum/Sudah Menikah
-- **Jenis Pekerjaan**: Pilih sesuai kategori
-- **Lokasi Tempat Tinggal**: Pedesaan/Perkotaan
+```
+http://localhost:8080/STROKE-APP/index.php
+```
 
-### 3. Mendapatkan Hasil
+#### **✅ Tampilan yang Benar:**
 
-1. Klik tombol **"Cek Risiko Sekarang"**
-2. Tunggu beberapa detik (loading)
-3. Hasil akan muncul di bawah form dengan informasi:
-   - **Status Risiko**: High Risk / Low Risk
-   - **Probabilitas Stroke**: Dalam persentase
-   - **Tingkat Kepercayaan Model**: Bar chart
-   - **Interpretasi & Rekomendasi**
-
-### 4. Export/Print Hasil
-
-#### **Print Laporan**
-- Klik tombol **"Print Laporan"**
-- Atau tekan `Ctrl+P` (Windows) / `Cmd+P` (Mac)
-- Pilih printer atau "Save as PDF"
-
-#### **Export PDF**
-- Klik tombol **"Export PDF"**
-- File PDF akan otomatis terunduh
-- Nama file: `Laporan_Risiko_Stroke_[Nama]_[Tanggal].pdf`
-
-#### **Bagikan Hasil**
-- Klik tombol **"Bagikan"**
-- Pilih aplikasi untuk berbagi
-- Atau hasil akan otomatis tersalin ke clipboard
-
-### 5. Reset Form
-
-Klik tombol **"Reset"** untuk mengosongkan form dan memulai prediksi baru.
+- Halaman web muncul dengan gradient purple-pink
+- Judul: **"Cek Risiko Stroke"**
+- Form input terlihat lengkap
+- Tidak ada error di halaman
 
 ---
 
-## 📁 Struktur Project
+## 5. Testing & Verifikasi
+
+### Test 1: Cek API Health
+
+Buka tab baru di browser, akses:
 
 ```
-stroke-app/
-│
-├── app.py                      # Flask API Backend
-│   ├── /                       # GET - API info
-│   ├── /health                 # GET - Health check
-│   └── /predict                # POST - Prediction endpoint
-│
-├── index.php                   # Frontend Interface
-│   ├── Form Input              # User input form
-│   ├── BMI Calculator          # Auto BMI calculation
-│   ├── Result Display          # Prediction results
-│   ├── Print Function          # Print report
-│   ├── PDF Export              # Export to PDF
-│   └── Share Function          # Share results
-│
-├── stroke_model.pkl            # Trained ML Model (RandomForest/XGBoost/etc)
-├── stroke_scaler.pkl           # StandardScaler for feature normalization
-│
-└── README.md                   # Documentation
+http://localhost:5003/health
 ```
 
----
+**Output yang diharapkan:**
 
-## 🔌 API Documentation
-
-### Base URL
-```
-http://localhost:5002
-```
-
-### Endpoints
-
-#### 1. Get API Information
-```http
-GET /
-```
-
-**Response:**
-```json
-{
-  "message": "Stroke Prediction API",
-  "status": "running",
-  "model_loaded": true,
-  "endpoints": {
-    "GET /": "API Information",
-    "GET /health": "Health Check",
-    "POST /predict": "Make Prediction"
-  }
-}
-```
-
----
-
-#### 2. Health Check
-```http
-GET /health
-```
-
-**Response:**
 ```json
 {
   "status": "healthy",
@@ -349,398 +376,336 @@ GET /health
 }
 ```
 
+✅ Jika muncul JSON di atas, API berjalan dengan baik!
+
 ---
 
-#### 3. Make Prediction
-```http
-POST /predict
+### Test 2: Test Prediksi Lengkap
+
+#### **A. Isi Form dengan Data Test**
+
+Gunakan data berikut untuk test:
+
+| Field | Value |
+|-------|-------|
+| **Nama Lengkap** | Ahmad Testing |
+| **Jenis Kelamin** | Laki-laki |
+| **Usia** | 67 tahun |
+| **Tinggi Badan** | 170 cm |
+| **Berat Badan** | 100 kg |
+| **Tekanan Darah Tinggi** | Ya |
+| **Penyakit Jantung** | Ya |
+| **Kadar Gula Darah** | 228 mg/dL |
+| **Status Merokok** | Aktif Merokok |
+| **Status Pernikahan** | Sudah Menikah |
+| **Jenis Pekerjaan** | Pegawai Swasta |
+| **Lokasi Tempat Tinggal** | Perkotaan |
+
+#### **B. Klik "Cek Risiko Sekarang"**
+
+Yang harus terjadi:
+1. ✅ Button berubah jadi "Menganalisis..." (loading)
+2. ✅ BMI otomatis terhitung: **34.6**
+3. ✅ Setelah 2-3 detik, hasil muncul
+
+#### **C. Verifikasi Hasil**
+
+Hasil yang muncul harus berisi:
+
+**📊 Data Pasien:**
+- Semua data yang diinput tadi
+
+**📈 Hasil Analisis:**
+- **Status Risiko**: High Risk atau Low Risk (tergantung model)
+- **Probabilitas Stroke**: Angka persentase (0-100%)
+- **Tingkat Kepercayaan Model**: 
+  - Bar hijau: Tidak Berisiko (%)
+  - Bar merah: Berisiko Stroke (%)
+- **Interpretasi**: Teks prediksi
+- **Rekomendasi**: Saran tindakan
+
+**🔧 Tombol Aksi:**
+- ✅ Print Laporan
+- ✅ Export PDF
+- ✅ Bagikan
+
+#### **D. Cek Terminal API**
+
+Di terminal yang menjalankan `app.py`, harus muncul log:
+
 ```
-
-**Request Headers:**
-```
-Content-Type: application/json
-```
-
-**Request Body:**
-```json
-{
-  "gender": 1,                    // 0=Female, 1=Male, 2=Other
-  "age": 45,                      // Years
-  "hypertension": 1,              // 0=No, 1=Yes
-  "heart_disease": 0,             // 0=No, 1=Yes
-  "ever_married": 1,              // 0=No, 1=Yes
-  "work_type": 3,                 // 0-4 (see mapping below)
-  "residence_type": 1,            // 0=Rural, 1=Urban
-  "avg_glucose_level": 120.5,    // mg/dL
-  "bmi": 28.3,                    // kg/m²
-  "smoking_status": 2             // 0-3 (see mapping below)
-}
-```
-
-**Work Type Mapping:**
-- `0`: Children / Unemployed
-- `1`: Government Job
-- `2`: Never Worked
-- `3`: Private Job
-- `4`: Self-employed
-
-**Smoking Status Mapping:**
-- `0`: Formerly Smoked
-- `1`: Never Smoked
-- `2`: Smokes
-- `3`: Unknown
-
-**Success Response (200 OK):**
-```json
-{
-  "success": true,
-  "prediction": 1,
-  "probability": 75.32,
-  "risk": "High Risk",
-  "risk_level": "high",
-  "confidence": {
-    "no_stroke": 24.68,
-    "stroke": 75.32
-  },
-  "interpretation": {
-    "prediction_text": "Pasien berisiko tinggi terkena stroke",
-    "recommendation": "Segera konsultasi dengan dokter"
-  }
-}
-```
-
-**Error Response (400 Bad Request):**
-```json
-{
-  "error": "Missing field: age"
-}
-```
-
-**Error Response (500 Internal Server Error):**
-```json
-{
-  "error": "Model not loaded. Please download model files first."
-}
+📥 Received data: {'gender': '1', 'age': '67', ...}
+📊 Features: [[1. 67. 1. ...]]
+✅ Prediction result: {'success': True, 'prediction': 1, ...}
+127.0.0.1 - - [09/Jan/2025 14:30:45] "POST /predict HTTP/1.1" 200 -
 ```
 
 ---
 
-### Example Usage (JavaScript)
+### Test 3: Test Export & Print
 
-```javascript
-const data = {
-  gender: 1,
-  age: 45,
-  hypertension: 1,
-  heart_disease: 0,
-  ever_married: 1,
-  work_type: 3,
-  residence_type: 1,
-  avg_glucose_level: 120.5,
-  bmi: 28.3,
-  smoking_status: 2
-};
+#### **A. Test Print**
 
-fetch('http://localhost:5002/predict', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(data)
-})
-.then(response => response.json())
-.then(result => {
-  console.log('Prediction:', result.prediction);
-  console.log('Probability:', result.probability);
-  console.log('Risk Level:', result.risk);
-})
-.catch(error => console.error('Error:', error));
-```
+1. Klik tombol **"Print Laporan"**
+2. Dialog print browser akan muncul
+3. Pilih printer atau "Save as PDF"
+4. ✅ Laporan tercetak/tersimpan dengan format rapi
+
+#### **B. Test Export PDF**
+
+1. Klik tombol **"Export PDF"**
+2. Tunggu loading "⏳ Membuat PDF..."
+3. File PDF otomatis terdownload
+4. Nama file: `Laporan_Risiko_Stroke_Ahmad_Testing_2025-01-09.pdf`
+5. ✅ Buka file PDF, pastikan isinya lengkap
+
+#### **C. Test Share (Optional)**
+
+1. Klik tombol **"Bagikan"**
+2. Jika browser support: popup share muncul
+3. Jika tidak: pesan "✅ Hasil telah disalin ke clipboard!"
+4. ✅ Paste di aplikasi lain untuk verifikasi
 
 ---
 
-## 🐛 Troubleshooting
+### Test 4: Test dengan Data Berbeda
 
-### ❌ Problem 1: "Model not loaded"
+Coba dengan data **low risk**:
 
-**Error Message:**
-```
-❌ Error loading model: [Errno 2] No such file or directory: 'stroke_model.pkl'
-```
+| Field | Value |
+|-------|-------|
+| **Nama Lengkap** | Budi Sehat |
+| **Jenis Kelamin** | Laki-laki |
+| **Usia** | 30 tahun |
+| **Tinggi Badan** | 175 cm |
+| **Berat Badan** | 70 kg |
+| **Tekanan Darah Tinggi** | Tidak |
+| **Penyakit Jantung** | Tidak |
+| **Kadar Gula Darah** | 95 mg/dL |
+| **Status Merokok** | Tidak Pernah Merokok |
+| **Status Pernikahan** | Belum Menikah |
+| **Jenis Pekerjaan** | Pegawai Swasta |
+| **Lokasi Tempat Tinggal** | Perkotaan |
 
-**Penyebab**: File model atau scaler tidak ditemukan.
+**Hasil yang diharapkan:** Status Risiko = **Low Risk** (hijau)
 
-**Solusi**:
+---
+
+## 6. Troubleshooting
+
+### ❌ Error 1: "Model not loaded"
+
+**Penyebab:** File `.pkl` tidak ditemukan
+
+**Solusi:**
 ```bash
-# Cek keberadaan file
+# Cek lokasi file
 ls -la stroke_model.pkl stroke_scaler.pkl
 
 # Windows
 dir stroke_model.pkl stroke_scaler.pkl
 ```
 
-Pastikan file `.pkl` ada di folder yang sama dengan `app.py`.
+Pastikan file ada di folder yang sama dengan `app.py`!
 
 ---
 
-### ❌ Problem 2: "Module not found" / "No module named 'flask'"
+### ❌ Error 2: "Port 5002 is in use"
 
-**Error Message:**
-```
-ModuleNotFoundError: No module named 'flask'
-```
-
-**Penyebab**: Library Python belum terinstall.
-
-**Solusi**:
-```bash
-# Upgrade pip terlebih dahulu
-pip install --upgrade pip
-
-# Install semua dependencies
-pip install flask flask-cors joblib numpy scikit-learn
-
-# Verifikasi
-pip list | grep flask
-```
-
----
-
-### ❌ Problem 3: Port Already in Use
-
-**Error Message:**
-```
-OSError: [Errno 48] Address already in use
-```
-
-**Penyebab**: Port 5002 sudah digunakan aplikasi lain.
-
-**Solusi 1 - Ganti Port**:
-
-Edit `app.py` baris terakhir:
-```python
-app.run(host='0.0.0.0', port=5003, debug=True)  # Ganti ke 5003
-```
-
-Lalu update `index.php` di fungsi fetch:
-```javascript
-const response = await fetch('http://localhost:5003/predict', {
-```
-
-**Solusi 2 - Stop Aplikasi yang Menggunakan Port**:
-
+**Solusi Quick:**
 ```bash
 # macOS/Linux
-lsof -i :5002
-kill -9 [PID]
+lsof -ti:5002 | xargs kill -9
 
 # Windows
 netstat -ano | findstr :5002
 taskkill /PID [PID] /F
 ```
 
+**Solusi Permanent:** Ganti port di `app.py` dan `index.php`
+
 ---
 
-### ❌ Problem 4: CORS Error
+### ❌ Error 3: "Connection refused" atau CORS
 
-**Error Message (di Browser Console)**:
-```
-Access to fetch at 'http://localhost:5002/predict' from origin 'http://localhost' 
-has been blocked by CORS policy
-```
+**Penyebab:** API tidak running atau CORS issue
 
-**Penyebab**: Flask-CORS tidak terinstall atau tidak aktif.
+**Solusi:**
+1. Pastikan terminal API masih buka dan running
+2. Cek browser console (F12) untuk error detail
+3. Restart API:
+   ```bash
+   CTRL+C  # Stop API
+   python3 app.py  # Start lagi
+   ```
 
-**Solusi**:
+---
+
+### ❌ Error 4: "Page not found" (404)
+
+**Penyebab:** Path folder salah
+
+**Solusi:**
 ```bash
-pip install flask-cors
+# Cek struktur folder
+ls /Applications/XAMPP/xamppfiles/htdocs/
 
-# Restart Flask API
-python app.py
+# Pastikan ada folder STROKE-APP
+```
+
+Atau coba URL alternatif:
+- `http://localhost/stroke-app/index.php` (lowercase)
+- `http://localhost:8080/STROKE-APP/index.php` (port 8080)
+
+---
+
+### ❌ Error 5: Warning Scikit-Learn Version
+
+**Solusi:**
+```bash
+pip install scikit-learn==1.6.1
+```
+
+Lalu restart API.
+
+---
+
+### ❌ Error 6: Apache XAMPP Tidak Start
+
+**Penyebab:** Port 80 sudah digunakan (Skype, IIS, dll)
+
+**Solusi:**
+
+1. **Windows:** Stop aplikasi yang pakai port 80
+2. **Atau ubah port Apache:**
+   - Buka XAMPP → Config → httpd.conf
+   - Cari `Listen 80`, ubah jadi `Listen 8080`
+   - Restart Apache
+   - Akses: `http://localhost:8080/STROKE-APP/index.php`
+
+---
+
+## 7. Tips & Best Practices
+
+### 📌 Workflow Harian
+
+**Setiap kali mau jalankan aplikasi:**
+
+```bash
+# 1. Buka Terminal
+cd /Applications/XAMPP/xamppfiles/htdocs/STROKE-APP
+
+# 2. Aktifkan virtual environment
+source venv/bin/activate
+
+# 3. Jalankan API
+python3 app.py
+
+# 4. Buka XAMPP → Start Apache
+
+# 5. Buka browser → http://localhost/STROKE-APP/index.php
+```
+
+**Setelah selesai:**
+
+```bash
+# 1. Stop API: CTRL+C di terminal
+# 2. Stop Apache di XAMPP
+# 3. Deactivate venv: deactivate
 ```
 
 ---
 
-### ❌ Problem 5: Connection Refused
+### 🔐 Keamanan
 
-**Error Message**:
-```
-Failed to fetch
-ERR_CONNECTION_REFUSED
-```
-
-**Penyebab**: Flask API belum/tidak berjalan.
-
-**Solusi**:
-1. Pastikan terminal yang menjalankan `python app.py` masih terbuka
-2. Cek apakah ada error di terminal tersebut
-3. Restart Flask API jika perlu
-4. Cek firewall tidak memblock port 5002
+- ✅ Jangan share file `.pkl` ke publik (model Anda)
+- ✅ Jangan commit `venv/` ke Git
+- ✅ Untuk production: gunakan HTTPS, authentication, rate limiting
+- ✅ Validasi semua input dari user
 
 ---
 
-### ❌ Problem 6: BMI Tidak Terhitung
+### 🚀 Optimasi Performance
 
-**Penyebab**: Input tinggi/berat badan tidak valid.
-
-**Solusi**:
-- Pastikan menggunakan angka (bukan text)
-- Gunakan titik (.) bukan koma (,) untuk desimal
-- Contoh benar: `170` dan `70.5`
-- Contoh salah: `170cm` atau `70,5`
+**Jika prediksi lambat:**
+1. Gunakan model yang lebih kecil
+2. Optimize preprocessing
+3. Enable caching
+4. Deploy ke server dengan resource lebih besar
 
 ---
 
-### ❌ Problem 7: PDF Export Gagal
+### 📊 Monitoring
 
-**Error Message**:
-```
-❌ Gagal membuat PDF
-```
-
-**Solusi**:
-1. Pastikan library `html2pdf.js` terload (cek koneksi internet)
-2. Gunakan alternatif: Print → Save as PDF
-3. Cek browser console untuk error details
+**Cek log di Terminal API untuk:**
+- Jumlah request
+- Error rate
+- Response time
+- Data input yang dikirim
 
 ---
 
-### ❌ Problem 8: Apache XAMPP Tidak Bisa Start
+### 🎨 Customization
 
-**Penyebab**: Port 80 atau 443 sudah digunakan (biasanya oleh Skype, IIS, atau aplikasi lain).
+**Edit tampilan:**
+- Buka `index.php`
+- Ubah warna gradient di class `gradient-bg`
+- Ubah teks di form labels
+- Tambah field baru (jangan lupa update `app.py` juga!)
 
-**Solusi**:
-1. Buka XAMPP Config → Apache → httpd.conf
-2. Ganti port:
-   ```
-   Listen 8080
-   ServerName localhost:8080
-   ```
-3. Akses aplikasi di: `http://localhost:8080/stroke-app/index.php`
-
----
-
-## 📊 Model Information
-
-### Features Used (Input)
-1. **Gender** - Jenis kelamin (0=Female, 1=Male, 2=Other)
-2. **Age** - Usia dalam tahun
-3. **Hypertension** - Riwayat hipertensi (0=No, 1=Yes)
-4. **Heart Disease** - Riwayat penyakit jantung (0=No, 1=Yes)
-5. **Ever Married** - Status pernikahan (0=No, 1=Yes)
-6. **Work Type** - Jenis pekerjaan (0-4)
-7. **Residence Type** - Tipe tempat tinggal (0=Rural, 1=Urban)
-8. **Average Glucose Level** - Kadar gula darah rata-rata (mg/dL)
-9. **BMI** - Body Mass Index (kg/m²)
-10. **Smoking Status** - Status merokok (0-3)
-
-### Output
-- **Prediction**: 0 (No Stroke) atau 1 (Stroke)
-- **Probability**: Persentase kemungkinan stroke (0-100%)
-- **Risk Level**: "Low Risk" atau "High Risk"
-
-### Model Performance (Example)
-- **Accuracy**: ~95%
-- **Precision**: ~92%
-- **Recall**: ~89%
-- **F1-Score**: ~90%
-
-*Note: Metrik ini contoh, sesuaikan dengan model Anda*
+**Edit model:**
+- Re-train di Google Colab
+- Download `.pkl` baru
+- Replace file lama
+- Restart API
 
 ---
 
-## 🔒 Security & Privacy
+## ✅ Checklist Final
 
-- ✅ Semua prediksi diproses secara lokal
-- ✅ Tidak ada data yang dikirim ke server eksternal
-- ✅ Data pasien tidak disimpan di database
-- ✅ Session-based processing
-- ⚠️ Untuk deployment production, tambahkan:
-  - HTTPS/SSL
-  - Authentication & Authorization
-  - Input validation & sanitization
-  - Rate limiting
-  - Database encryption (jika menyimpan data)
+Sebelum menganggap sistem berhasil, pastikan:
 
----
-
-## 🚀 Future Improvements
-
-- [ ] Database integration untuk menyimpan riwayat
-- [ ] User authentication & management
-- [ ] Multi-model ensemble prediction
-- [ ] Real-time dashboard analytics
-- [ ] Mobile app version (React Native/Flutter)
-- [ ] API rate limiting
-- [ ] Docker containerization
-- [ ] Cloud deployment (AWS/GCP/Azure)
-- [ ] Multi-language support
-- [ ] Email notification untuk hasil
+- [ ] Python 3.7+ terinstall
+- [ ] XAMPP terinstall
+- [ ] Virtual environment dibuat dan aktif
+- [ ] Dependencies terinstall (flask, flask-cors, dll)
+- [ ] File `.pkl` ada di folder project
+- [ ] API running di Terminal (port 5002)
+- [ ] Apache XAMPP running (hijau)
+- [ ] Website bisa diakses di browser
+- [ ] Form bisa diisi
+- [ ] BMI auto-calculate berfungsi
+- [ ] Prediksi berhasil dan muncul hasil
+- [ ] Print berfungsi
+- [ ] Export PDF berfungsi
+- [ ] Tidak ada error di browser console
 
 ---
 
-## 🤝 Contributing
+## 🎓 Kesimpulan
 
-Kontribusi sangat diterima! Untuk berkontribusi:
+Jika semua langkah diikuti dengan benar, sistem Anda akan:
 
-1. Fork repository ini
-2. Buat branch baru (`git checkout -b feature/AmazingFeature`)
-3. Commit perubahan (`git commit -m 'Add some AmazingFeature'`)
-4. Push ke branch (`git push origin feature/AmazingFeature`)
-5. Buat Pull Request
+✅ Running dengan sempurna
+✅ Memberikan prediksi real-time
+✅ Export hasil ke PDF
+✅ Print laporan lengkap
 
-### Contribution Guidelines
-- Ikuti PEP 8 untuk Python code
-- Tambahkan docstring untuk fungsi baru
-- Update README jika ada perubahan fitur
-- Test sebelum submit PR
+**Selamat! Sistem Anda sudah siap digunakan! 🎉**
 
 ---
 
-## 📝 License
+## 📞 Bantuan Lebih Lanjut
 
-Distributed under the MIT License. See `LICENSE` file for more information.
+Jika masih ada masalah:
 
-```
-MIT License
+1. **Cek dokumentasi lengkap di README.md**
+2. **Baca section Troubleshooting**
+3. **Cek browser console (F12) untuk error**
+4. **Cek terminal API untuk error log**
+5. **Screenshot error dan konsultasikan**
 
-Copyright (c) 2025 [Your Name]
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction...
-```
-
----
-
-## 👨‍💻 Author
-
-**[Your Name]**
-- GitHub: [@ellaherawati](https://github.com/ellaherawati)
-- Email: ellaherwati05@gmail.com
-- LinkedIn: [Ela Herawati](https://www.linkedin.com/in/ela-herawati-27408a326/)
-
----
-
-## 🙏 Acknowledgments
-
-- Dataset: [Stroke Prediction Dataset](https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset)
-- Icons: [Heroicons](https://heroicons.com/)
-- CSS Framework: [Tailwind CSS](https://tailwindcss.com/)
-- PDF Library: [html2pdf.js](https://github.com/eKoopmans/html2pdf.js)
-
----
-
-## ⭐ Star This Project
-
-Jika project ini membantu, berikan ⭐ di GitHub!
-
----
-
-<div align="center">
-
-**Made with ❤️ for better healthcare**
-
-[⬆ Back to Top](#-stroke-prediction-system)
-
-</div>
+Sumber:
+Dataset: https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset
+Coding google collab: https://youtu.be/YYLIFO-JCnI?si=AtferSot8denOAgK

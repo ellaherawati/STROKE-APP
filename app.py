@@ -115,4 +115,4 @@ if __name__ == '__main__':
     print("\n⚠️  Press CTRL+C to quit")
     print("="*70 + "\n")
     
-    app.run(host='0.0.0.0', port=5002, debug=True)
+    app.run(host='0.0.0.0', port=5003, debug=True)
